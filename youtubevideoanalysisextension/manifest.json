@@ -1,0 +1,39 @@
+{
+    "name": "__MSG_extensionName__",
+    "description": "my extension scratch video analysis",
+    "version": "1",
+    "manifest_version": 3,
+    "background": {
+      "service_worker": "background.js"
+    },
+    "host_permissions": ["*://*.youtube.com/*"],
+    "permissions": ["storage"],
+    "action": {
+      "default_popup": "popup.html"
+    },
+    "content_scripts": [
+      {
+        "matches": [
+          "*://youtube.com/*",
+          "*://www.youtube.com/*",
+          "*://m.youtube.com/*"
+        ],
+        "exclude_matches": ["*://*.music.youtube.com/*"],
+        "js": ["content-scripts.js"]
+        
+      }
+    ],
+    "externally_connectable": {
+      "matches": ["*://*.youtube.com/*"]
+    },
+    "web_accessible_resources": [
+      {
+        "resources": ["ryd.script.js"],
+        "matches": ["*://*.youtube.com/*"]
+      }
+    ],
+    "options_ui": {
+      "page": "popup.html",
+      "open_in_tab": false
+    }
+  }
